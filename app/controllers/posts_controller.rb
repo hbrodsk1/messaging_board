@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
 	def index
-		@posts = Post.all
+		@posts = Post.all.order('updated_at DESC')
 	end
 
 	def new
@@ -11,8 +11,9 @@ class PostsController < ApplicationController
 	def create
 		@user = current_user
 		@post = @user.posts.build(post_params)
+		@post.author = "#{@user.first_name} #{@user.last_name}"
 
-		if @post.save
+		if @post.save!
 			redirect_to @user
 		else
 			render 'new'
