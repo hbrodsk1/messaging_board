@@ -13,7 +13,7 @@ class PostsController < ApplicationController
 		@post = @user.posts.build(post_params)
 		@post.author = "#{@user.first_name} #{@user.last_name}"
 
-		if @post.save!
+		if @post.save
 			redirect_to @user
 		else
 			render 'new'

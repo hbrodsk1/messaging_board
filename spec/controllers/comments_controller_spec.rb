@@ -91,6 +91,7 @@ RSpec.describe CommentsController, type: :controller do
       end
 
       let(:update) { patch :update, id: @comment, :comment => @updated_comment_attributes }
+      login_user
 
       it "assigns the selected comment to @comment" do
         update
@@ -118,6 +119,7 @@ RSpec.describe CommentsController, type: :controller do
       end
 
       let(:update) { patch :update, id: @comment, comment: @invalid_comment_attributes }
+      login_user
 
       it "assigns the selected comment to @comment" do
         update

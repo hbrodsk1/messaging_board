@@ -18,7 +18,9 @@ class CommentsController < ApplicationController
   end
 
   def update
+    @user = current_user
     @comment = Comment.find(params[:id])
+    @comment.author = "#{@user.first_name} #{@user.last_name}"
 
     if @comment.update(comment_params)
       redirect_to(@comment.post)
