@@ -8,3 +8,7 @@
 	<p><%= comment.author %></p>
 	<p><%= comment.body %></p>
 <% end %>
+
+<% if current_user %>
+	<%= render 'shared/comment_form' %>
+<% end %>
