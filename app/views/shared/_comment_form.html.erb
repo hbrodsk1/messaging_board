@@ -1,12 +1,12 @@
 <div class="form-container container col-md-8 col-md-offset-2">
 	<%= form_for Comment.new, url: { :controller => 'comments', :action => 'create' } do |f| %>
-		<%= f.hidden_field :user_id, value: current_user.id %>
-		<%= f.hidden_field :post_id, value: @post.id %>
-		<%= f.hidden_field :author, value: current_user.first_name %>
+		<%= f.hidden_field :user_id, value: current_user.id, id: "comment-post-id" %>
+		<%= f.hidden_field :post_id, value: @post.id, id: "comment-user-id" %>
+		<%= f.hidden_field :author, value: current_user.first_name, id: "comment-author" %>
 		
 			<div class="row form-row comment-body-container col-md-12">
 				<%= f.label :body, "Comment" %>
-				<%= f.text_area :body, size: "60x6", placeholder: "Leave a sweet comment...", class: "form-control comment-body-form" %>
+				<%= f.text_area :body, size: "60x6", placeholder: "Leave a sweet comment...", id: "comment-body", class: "form-control comment-body-form" %>
 			</div>
 
 			<div class="row form-row col-md-12">
