@@ -1,5 +1,12 @@
-<% @posts.each do |post| %>
-	<h5><%= post.title %></h5>
-	<p><%= post.body %></p>
-	<p><%= post.author %></p>
-<% end %>
+<div class= "posts-container row col-md-8 col-md-offset-2">
+	<h1 class="posts-header">Posts</h1>
+	<%= link_to "Create Your Own Post", new_post_path, class: "btn btn-success add-post-button" %>
+
+	<% @posts.each do |post| %>
+		<div class="post">
+			<h5 class="post-title col-md-12"><%= link_to post.title, post_path(post) %></h5>
+			<p class="post-body"><%= post.body %></p>
+			<p class="post-author col-md-12">Author: <%= link_to post.author, user_path(post.user) %></p>
+		</div>
+	<% end %>
+</div>
