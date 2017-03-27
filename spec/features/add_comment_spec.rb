@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "Add a new post", type: :feature do
+RSpec.feature "Add a new comment", type: :feature do
 	scenario 'A user creates a valid comment' do
 		@user = FactoryGirl.create(:user)
 		@post = FactoryGirl.create(:post, user: @user)

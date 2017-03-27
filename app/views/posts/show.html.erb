@@ -9,7 +9,7 @@
 
 		<% @post.comments.order('created_at ASC').each do |comment| %>
 			<div class="comment-container">
-				<h5 class="comment-author"><%= comment.author %>says...</h5>
+				<h5 class="comment-author"><%= comment.author %> says...</h5>
 				<p class="comment-body"><%= comment.body %></p>
 			</div>
 		<% end %>
