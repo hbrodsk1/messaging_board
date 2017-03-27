@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
 
-    if @comment.save!
+    if @comment.save
       redirect_to @comment.post
     else
       render 'new'
