@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+	before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
 	def index
 		@posts = Post.all.order('updated_at DESC')
@@ -14,7 +15,7 @@ class PostsController < ApplicationController
 		@post.author = "#{@user.first_name} #{@user.last_name}"
 
 		if @post.save
-			redirect_to @user
+			redirect_to root_path
 		else
 			render 'new'
 		end

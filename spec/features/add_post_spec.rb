@@ -13,7 +13,7 @@ RSpec.feature "Add a new post", type: :feature do
 
 		click_button('Submit')
 
-		expect(page).to have_current_path(user_path(@post[:user]))
+		expect(page).to have_current_path(root_path)
 	end
 
 	scenario 'A user creates an invalid post' do

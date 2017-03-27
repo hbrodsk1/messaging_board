@@ -1,6 +1,10 @@
 <div class= "posts-container row col-md-8 col-md-offset-2">
 	<h1 class="posts-header">Posts</h1>
-	<%= link_to "Create Your Own Post", new_post_path, class: "btn btn-success add-post-button" %>
+	<% if current_user %>
+		<%= link_to "Create Your Own Post", new_post_path, class: "btn btn-success add-post-button" %>
+	<% else %>
+		<h4>Please <%= link_to "sign in", new_user_session_path %> to add a post</h4>
+	<% end %>
 
 	<% @posts.each do |post| %>
 		<div class="post">

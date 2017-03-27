@@ -21,6 +21,8 @@ RSpec.describe PostsController, type: :controller do
 	end
 
 	describe '#new' do
+		login_user
+
 		it "responds successfully with an HTTP 200 status code" do
 			get :new
 			expect(response).to have_http_status(200)
@@ -59,7 +61,6 @@ RSpec.describe PostsController, type: :controller do
 	describe '#create' do
 		context "with valid attributes" do
 			let(:post_params) { FactoryGirl.attributes_for(:post) }
-
 			login_user
 
 			it "creates a new post" do
@@ -70,16 +71,15 @@ RSpec.describe PostsController, type: :controller do
 				expect { post :create, :post => post_params }.to change(subject.current_user.posts, :count).by(1)
 			end
 
-			it "redirects to user page" do
+			it "redirects to root page" do
 				post :create, :post => post_params
-				expect(response).to redirect_to(assigns(:user))
+				expect(response).to redirect_to(root_path)
 			end
 		end
 
 		context "with invalid attributes" do
 			let(:user) { FactoryGirl.create(:user) }
 			let(:invalid_post_params) { FactoryGirl.attributes_for(:invalid_post) }
-
 			login_user
 
 			it "does not create a new post" do
@@ -95,6 +95,7 @@ RSpec.describe PostsController, type: :controller do
 
 	describe '#edit' do
 		let(:post) { FactoryGirl.create(:post) }
+		login_user
 
 		it "responds successfully with an HTTP 200 status code" do
 			get :edit, id: post
@@ -116,6 +117,7 @@ RSpec.describe PostsController, type: :controller do
 		let(:post) { FactoryGirl.create(:post) }
 		let(:updated_attributes) { FactoryGirl.attributes_for(:post, title: "New Title") }
 		let(:invalid_updated_attributes) { FactoryGirl.attributes_for(:invalid_post) }
+		login_user
 
 		context "with valid attributes" do
 			it "assigns the requested post to @post" do
@@ -153,6 +155,7 @@ RSpec.describe PostsController, type: :controller do
 		before :each do 
 			@post = FactoryGirl.create(:post)
   		end
+  		login_user
 
 		it "assigns the requested post to @post" do
 			delete :destroy, id: @post
@@ -172,7 +175,6 @@ RSpec.describe PostsController, type: :controller do
 
 	describe '#post_params' do
 		let(:user) { FactoryGirl.create(:user) }
-
 		login_user
 
    		it "should permit only whitelisted attributes" do
