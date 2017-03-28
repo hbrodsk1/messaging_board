@@ -59,3 +59,7 @@ group :test do
   gem 'database_cleaner'
 end
 
+group :development do
+  gem 'rails_12factor'
+end
+
