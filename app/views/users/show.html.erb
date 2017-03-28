@@ -1,0 +1,9 @@
+<% if @user.about_me.empty? %>
+	<div class="about-me-container col-md-6 col-md-offset-3">
+		<p class="about-me">This user does not have an 'About me'</p>
+	</div>
+<% else %>
+	<div class="about-me-container col-md-6 col-md-offset-3">
+		<p class="about-me"><%= @user.about_me %></p>
+	</div>
+<% end %>
