@@ -134,7 +134,7 @@ RSpec.describe CommentsController, type: :controller do
     end
   end
 
-  describe "GET #destroy" do
+  describe "DELETE #destroy" do
     before :each do 
       @comment = FactoryGirl.create(:comment)
     end

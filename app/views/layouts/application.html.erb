@@ -24,6 +24,10 @@
 	  </div>
 	</nav>
 
+	<% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: "col-md-12 flash" %>
+    <% end -%>
+
 <%= yield %>
 
 </body>

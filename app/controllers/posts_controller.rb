@@ -15,6 +15,7 @@ class PostsController < ApplicationController
 		@post.author = "#{@user.first_name} #{@user.last_name}"
 
 		if @post.save
+			flash[:notice] = "Post Created"
 			redirect_to root_path
 		else
 			render 'new'
@@ -34,6 +35,7 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 
 		if @post.update(post_params)
+			flash[:notice] = "Post Updated"
 			redirect_to(@post)
 		else
 			render 'edit'
@@ -44,6 +46,7 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 
 		if @post.destroy
+			flash[:notice] = "Post Deleted"
 			redirect_to @post.user
 		end
 	end
